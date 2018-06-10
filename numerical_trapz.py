@@ -99,7 +99,6 @@ def beamDeflection(vehicleObject, beamObject, timeStepSize=0.1, spaceStepSize=0.
 			if t<t2Step:   
 				duhamel2 = np.sin( eigenfreq*(time[t]-time[0:t+1]) )
 				integral4 = np.trapz( phi2*force2[0:t+1]*duhamel2, time[0:t+1] )	
-				
 			else:
 				duhamel2 = np.sin( eigenfreq*(time[t]-time[0:t2Step]) )	
 				integral4 = np.trapz( phi2*force2[0:t2Step]*duhamel2, time[0:t2Step] )
@@ -140,7 +139,7 @@ class Beam:
 		self.density = materialDensity
 
 
-testVehicle = Vehicle(300, 3.125, 2, 14715, None, 2)
+testVehicle = Vehicle(300, 3.125, 2, 147, None, 2)
 testBeam = Beam(20, 0.4, 90666666, 2400)
 
 testResults = beamDeflection(testVehicle, testBeam)
