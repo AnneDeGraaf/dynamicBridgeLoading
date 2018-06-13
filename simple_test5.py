@@ -36,7 +36,7 @@ w = np.zeros((len(time), len(x)))
 wDiff = np.zeros(len(time))
 wQ = np.zeros(len(time))
 u = np.zeros(len(time))
-u[0] = 2.0*mass*g/spring
+u[0] = 2.0*mass*g/spring 	# multiplying by 2.0 also influences the general eq for u(t)... Not taken into account here
 uDiff = np.zeros(len(time))
 
 for t in np.arange(2, len(time)):

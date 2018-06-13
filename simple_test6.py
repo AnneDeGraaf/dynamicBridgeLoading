@@ -21,8 +21,7 @@ dx = 0.1
 g = 9.81			# m/s^2
 mass = 2000.0 		# kg
 damp = 2*np.sqrt(spring*mass)-1		# N/m/s (just under critical damping)
-print(damp)
-
+# print(damp)
 
 
 def phi_m(m, x, L):
