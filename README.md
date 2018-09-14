@@ -16,3 +16,6 @@ deflection_dynamic_loading.py: fill in your own bridge and vehicle parameters at
   
 To change the animation speed, change "interval=..." in "ani = animation.FuncAnimation(...)"
   at bottom of the script.
+
+
+Thesis report: degraaf_4205731_BEP_final.pdf
