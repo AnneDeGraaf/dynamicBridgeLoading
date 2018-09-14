@@ -18,4 +18,4 @@ To change the animation speed, change "interval=..." in "ani = animation.FuncAni
   at bottom of the script.
 
 
-Thesis report: degraaf_4205731_BEP_final.pdf
+Thesis report: thesis_report.pdf
