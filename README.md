@@ -5,7 +5,7 @@ Code for the numerical calculation of dynamic bridge loading, as part of my BSc 
 
 example_deflection_hyperloop.py: animation for bridge deflection when a hyperloop passes over
 
-example_deflection_locomotive.py: animation for bridge deflection when locomotive passes over
+example_deflection_locomotive.py: animation for bridge deflection when a train passes over
 
 deflection_dynamic_loading.py: fill in your own bridge and vehicle parameters at the top of 
   the script. Note that because of the type of numerical integration used (trapezoidal), 
