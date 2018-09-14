@@ -2,25 +2,26 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt 
 import matplotlib.animation as animation
+import pickle
 
 
 ## FULL MODEL: 1 MASS 2DOF VEHICLE OVER SIMPLY SUPPORTED BEAM
 
 
 # input vehicle
-mass = 140.0 		# kg
-velocity = 2.0 		# m/s
-spring = 5000.0 	# N/m
-damp = 10000.0 		# N/m/s
-wbase = 2.0 		# m
-inertia = 167.0		# kg.m^2
+mass = 		# kg
+velocity =  	# m/s
+spring = 	# N/m
+damp = 		# N/m/s
+wbase =  	# m
+inertia = 	# kg.m^2
 
 # input beam
-span = 20.0 		# m
-area = 0.4 			# m^2
-EI = 90666667.0 	# N.m^2
-density = 2400.0 	# kg/m^3
-excitationModes = 5
+span =  	# m
+area =  	# m^2
+EI =  		# N.m^2
+density =  	# kg/m^3
+excitationModes =
 
 g = 9.81 	# gravitational constant
 
@@ -38,20 +39,20 @@ t2 = int((span/velocity)/dt)	# Q2 leaves the beam (as time index)
 # x steps
 dx = 0.1
 x = np.arange(0, trajectory+dx, dx)	
-x1 = int(wbase/dx)			# beginning of beam (as x index)
+x1 = int(wbase/dx)		# beginning of beam (as x index)
 x2 = int((wbase+span)/dx)	# end of beam (as x index)
 
 # initializing empty arrays for the numerical calculation
-w = np.zeros((len(time), len(x)))		# w(t,x)
+w = np.zeros((len(time), len(x)))	# w(t,x)
 wDiff = np.zeros((len(time), len(x)))	# w'(t,x)			
 
 u = np.zeros(len(time))			# u(t)
 u[0] = 0.5*mass*g/spring 		# initial condition for u(0)
-uDiff = np.zeros(len(time)) 	# u'(t)
+uDiff = np.zeros(len(time)) 		# u'(t)
 
 theta = np.zeros(len(time))		# theta(t)
-theta[0] = 0  					# initial condition for theta(0)
-thDiff = np.zeros(len(time))	# theta'(t)
+theta[0] = 0  				# initial condition for theta(0)
+thDiff = np.zeros(len(time))		# theta'(t)
 
 Q1 = np.zeros(len(time))
 Q2 = np.zeros(len(time))
@@ -70,7 +71,7 @@ def phi_m(m, x, L):
 for t in np.arange(1, len(time)):
 
 	# determine x location (step) of forces at time t
-	xQ1[t] = min( x2, int(round((velocity*time[t])/dx)) )			# x step location of force 1
+	xQ1[t] = min( x2, int(round((velocity*time[t])/dx)) )		# x step location of force 1
 	xQ2[t] = min( len(x)-1, int(round((velocity*time[t])/dx))+x1 )	# x step location of force 2
 
 
@@ -121,9 +122,14 @@ for t in np.arange(1, len(time)):
 		Q1[t+1] = spring*( u[t] + 0.5*wbase*theta[t] - w[t, xQ1[t]] ) + damp*( uDiff[t] + 0.5*wbase*thDiff[t] - wDiff[t, xQ1[t]] )
 		Q2[t+1] = spring*( u[t] - 0.5*wbase*theta[t] - w[t, xQ2[t]] ) + damp*( uDiff[t] - 0.5*wbase*thDiff[t] - wDiff[t, xQ2[t]] )
 
+		
+# storing the calculated data:
+with open('my_bridge_deflection.pkl', 'w') as f:  # Python 3: open(..., 'wb')
+    pickle.dump([w, u, theta, Q1, Q2], f)
 
 
-
+		
+# ANIMATION:
 
 # initializing beam
 fig, ax = plt.subplots()
