@@ -123,14 +123,6 @@ for t in np.arange(1, len(time)):
 
 
 
-# ANIMATION:
-
-
-# def rotRectangle( x, y, angle, height, width ):
-	
-# 	iets met polygon
-	
-# 	return(x1, x2, x3, x4, y1, y2, y3, y4)
 
 
 # initializing beam
@@ -157,7 +149,7 @@ def animationFrames(i):
 
 
 # show animation
-ani = animation.FuncAnimation(fig, animationFrames, np.arange(0, len(w)), interval=1)
+ani = animation.FuncAnimation(fig, animationFrames, np.arange(0, len(w)), interval=33)
 plt.show()
 	
 
